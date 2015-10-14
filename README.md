@@ -1,3 +1,4 @@
 # Blackjack_project_one
-
-Will update as the days go by.
+This project was made to honor the fearless leader!
+[](./fearless_leader.png)
+##General Wireframe
