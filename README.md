@@ -1,4 +1,4 @@
 # Blackjack_project_one
 This project was made to honor the fearless leader!
-[](./fearless_leader.png)
+![](./fearless_leader.png)
 ##General Wireframe
