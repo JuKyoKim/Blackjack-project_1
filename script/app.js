@@ -40,50 +40,64 @@ Board.prototype.start_round = function(){
 	for(var i = 0; i < 2;i++){
 		this.dealer_hand.push(this.randomize());
 		this.player_hand.push(this.randomize());
-	};
+	};// end of for loop that creates new hands for the player
 };// end of start round method
 
 Board.prototype.hit_stay = function(string) {
-	//get input from input
-	var input = string;//for now its going to be hard coded value
 
-	switch(input){
+	switch(string){
 		case "hit":
 			this.player_hand.push(this.randomize());
 		break;
 
 		case "stay":
 			console.log("robot's turn");
-			//this.robo;
+			this.robo();
 		break;
-	};
+	};// end of switch case conditional for moving player to next round
+};// end of hit_stay method(will need to loop this in the main play game method!!!!! until stay is hit)
 
-};
+Board.prototype.grab_value = function() {
 
-Board.prototype.win_loss_logic = function() {
-	var hand_value = function(array){
-		var total = null;
-		for(var i =0;i<array.length;i++){
-			if(array[i].card_value === "Queen" || array[i].card_value === "Jack"|| array[i].card_value === "King"){
-				total += 10;
+
+	//need to rewrite this exact loop to something slightly more non complex
+	var ace_check = function(){
+		var user_choice = null;
+		var converted_value = null;
+		while(converted_value !== "resolved"){
+			user_choice = prompt("do you want to make the A value equal (11) or (1)");
+			if(Number(user_choice) === 1 || Number(user_choice) === 11){
+				converted_value = "resolved";
+			};// end of conditional
+		};// end of while loop
+		return Number(user_choice);
+	};// end of ace check
+
+	var value_parse = function(array){
+		var total = 0;
+		for(var i = 0;i < array.length;i++){
+			if(array[i].card_value === "King" || array[i].card_value === "Queen" || array[i].card_value === "Jack"){
+				total += 10
 			}else if(array[i].card_value === "Ace"){
-				var ace_value = prompt("do you want to count it as 11 or 1");
-
-			};// converting all the stringed values to numeric
-		};//end of for loop
+				total += ace_check();
+			}else{
+				total += array[i].card_value;
+			}//conversion for king,queen, etc!!
+		};// end of for loop
 		return total;
-	};//end of the hand_value function
+	};// end of the value parsing function
 
-	var dealer_hand = hand_value(this.dealer_hand);
-	return dealer_hand;
-
-};// end of win_loss_logic method
+	console.log("player hand is equal to "+ value_parse(this.player_hand));
+	console.log("dealer hand is equal to "+ value_parse(this.dealer_hand));
 
 
+};// end of grab_value method
 
+Board.prototype.robo = function() {
+	
 
-
-
+	//add a line to proc the win loss check
+};// end of robo method
 
 //going to load this at the end, so it doesnt distract me with the other stuff
 
