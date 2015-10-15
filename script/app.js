@@ -1,13 +1,3 @@
-console.log("loaded");
-
-window.onload = function(){
-	//set the background on load of the window
-	var body = $("body")
-	body.css("background-image","url(http://d2fhka9tf2vaj2.cloudfront.net/premium/034_blackJack/images/9.jpg)");
-	
-
-};// end of window onload 
-
 var Board = function(){
 	//the dealer and player will store card objects
 	this.dealer_hand = [];
@@ -35,37 +25,27 @@ Board.prototype.randomize = function() {
 	return new Card;//only way to grab freshest of the fresh!
 };// end of randomize proto method
 
-
-Board.prototype.clear_hand = function() {
-	this.dealer_hand = [];
-	this.player_hand = [];
-};
-
-Board.prototype.start_round = function(){	
-	//need to find a way to set the hand its throwing cards in to become flexible.
-	//should generate per "start"
-	this.dealer_hand.push(this.randomize());
-	this.dealer_hand.push(this.randomize());
-	this.player_hand.push(this.randomize());
-	this.player_hand.push(this.randomize());
-
-	this.ask_bets();
-
-	if(this.round_over() === true){
-		this.clear_hand();
-	};//end of round over check
-};// end of start round method
-
-Board.prototype.ask_bets = function() {
-	//grab input from input field, but for now substitute
-	var staked_pesos = 20;// the hard coded value WILL BE REPLACED WITH a more dynamic inputs
+Board.prototype.ask_bets = function(amount){
+	var staked_pesos = amount;
 	this.player_bet = staked_pesos;
 	this.bankroll -= staked_pesos;
 };// end of ask_bets method
 
-Board.prototype.hit_stay = function() {
+Board.prototype.clear_hand = function() {
+	this.dealer_hand = [];
+	this.player_hand = [];
+};//end of clear_hand method
+
+Board.prototype.start_round = function(){	
+	for(var i = 0; i < 2;i++){
+		this.dealer_hand.push(this.randomize());
+		this.player_hand.push(this.randomize());
+	};
+};// end of start round method
+
+Board.prototype.hit_stay = function(string) {
 	//get input from input
-	var input = "hit";//for now its going to be hard coded value
+	var input = string;//for now its going to be hard coded value
 
 	switch(input){
 		case "hit":
@@ -79,11 +59,6 @@ Board.prototype.hit_stay = function() {
 	};
 
 };
-
-Board.prototype.round_over = function() {
-	return false;
-	//placeholder for now
-};//end of round over method 
 
 Board.prototype.win_loss_logic = function() {
 	var hand_value = function(array){
@@ -110,8 +85,14 @@ Board.prototype.win_loss_logic = function() {
 
 
 
+//going to load this at the end, so it doesnt distract me with the other stuff
 
-
+window.onload = function(){
+	console.log("loaded");
+	//set the background on load of the window
+	var body = $("body")
+	body.css("background-image","url(http://d2fhka9tf2vaj2.cloudfront.net/premium/034_blackJack/images/9.jpg)");
+};// end of window onload 
 
 
 
