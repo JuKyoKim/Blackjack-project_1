@@ -27,8 +27,12 @@ Board.prototype.randomize = function() {
 
 Board.prototype.ask_bets = function(amount){
 	var staked_pesos = amount;
+	if(this.bankroll < amount){
+		return "INVALID!!!! U GOT NO MONEY!!!!"
+	};
 	this.player_bet = staked_pesos;
 	this.bankroll -= staked_pesos;
+
 };// end of ask_bets method
 
 Board.prototype.clear_hand = function() {
@@ -128,6 +132,42 @@ Board.prototype.robo = function() {
 	};// end of while loop
 	//add a line to proc the win loss check
 };// end of robo method
+
+Board.prototype.find_winner = function(){
+	var player = this.grab_value("player");
+	var dealer = this.grab_value("dealer");
+
+	var loss = function(){
+		this.player_bet = 0;//reset to 0
+		return "YOU LOST!"
+	}
+
+	var win = function(){
+		this.bankroll += (this.player_bet * 2);
+		this.player_bet = 0;//reset to 0
+		return "YOU WIN!"
+	};
+
+	switch(player){
+		case 21:
+			win();
+			return "Blackjack"
+		break;
+	
+		default:
+			if(player > 21){
+				return loss();
+			}else if(dealer > 21){
+				return win();
+			}else{
+				if(player <= dealer){
+					return loss();
+				}else{
+					return win();
+				};// end of the if dealer or winner has more or less in between 21
+			};// end of the if dealer or winner instant bust from having more than 21
+	};// end of conditional switch for checking for blackjack
+};// end of find_method
 
 //going to load this at the end, so it doesnt distract me with the other stuff
 
