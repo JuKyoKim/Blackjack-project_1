@@ -40,7 +40,7 @@ Board.prototype.clear_hand = function() {
 	this.player_hand = [];
 };//end of clear_hand method
 
-Board.prototype.start_round = function(){	
+Board.prototype.deal_hands = function(){	
 	for(var i = 0; i < 2;i++){
 		this.dealer_hand.push(this.randomize());
 		this.player_hand.push(this.randomize());
@@ -169,8 +169,18 @@ Board.prototype.find_winner = function(){
 	};// end of conditional switch for checking for blackjack
 };// end of find_method
 
-//going to load this at the end, so it doesnt distract me with the other stuff
 
+// randomize()
+// ask_bets()
+// clear_hand()
+// deal_hands()
+// hit_stay()
+// grab_value
+// robo()
+// find_winner()
+
+
+//going to load this at the end, so it doesnt distract me with the other stuff
 window.onload = function(){
 	console.log("loaded");
 	//set the background on load of the window
