@@ -54,10 +54,14 @@ Board.prototype.hit_stay = function(string) {
 			console.log("robot's turn");
 			this.robo();
 		break;
+
+		case "dealer"://if dealer string is passed throw that dealer a bone
+			this.dealer_hand.push(this.randomize());
+		break;
 	};// end of switch case conditional for moving player to next round
 };// end of hit_stay method(will need to loop this in the main play game method!!!!! until stay is hit)
 
-Board.prototype.grab_value = function() {
+Board.prototype.grab_value = function(type) {
 
 
 	//need to rewrite this exact loop to something slightly more non complex
@@ -82,20 +86,28 @@ Board.prototype.grab_value = function() {
 				total += ace_check();
 			}else{
 				total += array[i].card_value;
-			}//conversion for king,queen, etc!!
+			}//conversion for king,queen, etc!! will check for specified string, should rewrite in switch
 		};// end of for loop
 		return total;
 	};// end of the value parsing function
 
-	console.log("player hand is equal to "+ value_parse(this.player_hand));
-	console.log("dealer hand is equal to "+ value_parse(this.dealer_hand));
-
-
+	var return_value = null;
+	//This will return the dealer unless player is specifie through ternary
+	//can't return it on the actual or else it will give me an error
+	type === "player" ? return_value = value_parse(this.player_hand): return_value = value_parse(this.dealer_hand);
+	return return_value;
+	// check
+	// console.log("player hand is equal to "+ value_parse(this.player_hand));
+	// console.log("dealer hand is equal to "+ value_parse(this.dealer_hand));
 };// end of grab_value method
 
 Board.prototype.robo = function() {
-	
-
+	var dealers_current_value = this.grab_value("dealer");//grabs the current value for dealer
+	while(dealers_current_value < 16){
+		this.hit_stay("dealer");
+		//reset the value to the current value again
+		dealers_current_value = this.grab_value("dealer");
+	};// end of while loop
 	//add a line to proc the win loss check
 };// end of robo method
 
