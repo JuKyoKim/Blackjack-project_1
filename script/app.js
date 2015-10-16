@@ -200,12 +200,11 @@ $(function() {
 		console.log("starting game");
 		$("#start_game").remove();//removes the button
 		var test = new Board;// not gonna bother renaming this since it wont really matter
-
 		while(test.bankroll !== 0){
 			test.deal_hands();
 			console.log(test);
 			
-
+			
 
 
 
@@ -219,8 +218,6 @@ $(function() {
 		body.prepend(start_button);
 		alert("YOU LOST ALL YO MONEY!!!!");
 	};// end of the new start game function
-
-
 
 
 
