@@ -140,13 +140,13 @@ Board.prototype.find_winner = function(){
 	var loss = function(){
 		this.player_bet = 0;//reset to 0
 		return "YOU LOST!"
-	}
+	};// end of loss function
 
 	var win = function(){
 		this.bankroll += (this.player_bet * 2);
 		this.player_bet = 0;//reset to 0
 		return "YOU WIN!"
-	};
+	};// end of win function
 
 	switch(player){
 		case 21:
@@ -170,14 +170,14 @@ Board.prototype.find_winner = function(){
 };// end of find_method
 
 
-// randomize()
-// ask_bets()
-// clear_hand()
-// deal_hands()
-// hit_stay()
-// grab_value
-// robo()
-// find_winner()
+// randomize() - this generates random cards
+// ask_bets(number) - this will create bets and set the value to the current objecy
+// clear_hand() - clears the hands, mainly for testing purposes
+// deal_hands() - deals 2 randomly generated cards
+// hit_stay() - "hit" or "stay" for players, the dealers case is for internal function on robo
+// grab_value() - just grabs value, this runs on its own, so no need to really use it, also made for testing
+// robo() - that robotic dealer logic, super simple
+// find_winner() - accounts for the 22 or more busting instant, blackjack at 21, and the dealer always winning out on tied numbs
 
 
 //going to load this at the end, so it doesnt distract me with the other stuff
