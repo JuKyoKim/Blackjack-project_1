@@ -63,42 +63,60 @@ Board.prototype.hit_stay = function(string) {
 
 Board.prototype.grab_value = function(type) {
 
-
-	//need to rewrite this exact loop to something slightly more non complex
-	var ace_check = function(){
-		var user_choice = null;
-		var converted_value = null;
-		while(converted_value !== "resolved"){
-			user_choice = prompt("do you want to make the A value equal (11) or (1)");
-			if(Number(user_choice) === 1 || Number(user_choice) === 11){
-				converted_value = "resolved";
+	var rearrange_current_array = function(array){
+		var temp_arr = [];
+		for(var i = 0; i<array.length;i++){
+			if(array[i].card_value === "Ace"){
+				temp_arr.push(array[i]);
+				array.splice(i,1);//remove the current item
+				i--;//sets i back 1 to account for the removed item
 			};// end of conditional
-		};// end of while loop
-		return Number(user_choice);
-	};// end of ace check
-
+		};// for loop to check the array
+		if(temp_arr[0] === undefined){
+			return array;
+		}else{
+			for(var i = 0;i < temp_arr.length;i++){
+				array.push(temp_arr[i]);//pushes the card from temp to the current hand
+			};// end of for loop
+			return array;
+		};// end of the conditional
+	};// end of rearrange_current_array function
+	
 	var value_parse = function(array){
-		var total = 0;
+	
+		var ace_value = function(current_total){
+			var i = 0;
+			current_total < 11 ? i = 11: i = 1;
+			return i;
+		};// end of ace_value function need to rewrite the logic
+	
+	
+		var total = 0
 		for(var i = 0;i < array.length;i++){
-			if(array[i].card_value === "King" || array[i].card_value === "Queen" || array[i].card_value === "Jack"){
-				total += 10
-			}else if(array[i].card_value === "Ace"){
-				total += ace_check();
-			}else{
-				total += array[i].card_value;
-			}//conversion for king,queen, etc!! will check for specified string, should rewrite in switch
-		};// end of for loop
+			switch(array[i].card_value){
+				case "King":
+				case "Jack":
+				case "Queen":
+					total += 10
+				break;
+
+				case "Ace":
+					total += ace_value(total);
+				break;
+
+				default:
+					total += array[i].card_value;
+			};// end of switch conditional
+		};// end of the for loop
 		return total;
-	};// end of the value parsing function
+	};// end of value parse function
 
 	var return_value = null;
 	//This will return the dealer unless player is specifie through ternary
 	//can't return it on the actual or else it will give me an error
-	type === "player" ? return_value = value_parse(this.player_hand): return_value = value_parse(this.dealer_hand);
+	type === "player" ? return_value = value_parse(rearrange_current_array(this.player_hand)): return_value = value_parse(rearrange_current_array(this.dealer_hand));
 	return return_value;
-	// check
-	// console.log("player hand is equal to "+ value_parse(this.player_hand));
-	// console.log("dealer hand is equal to "+ value_parse(this.dealer_hand));
+
 };// end of grab_value method
 
 Board.prototype.robo = function() {
