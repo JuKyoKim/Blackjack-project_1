@@ -180,13 +180,54 @@ Board.prototype.find_winner = function(){
 // find_winner() - accounts for the 22 or more busting instant, blackjack at 21, and the dealer always winning out on tied numbs
 
 
-//going to load this at the end, so it doesnt distract me with the other stuff
-window.onload = function(){
+$(function() {
+	//write all jquery selectors here
+	var body = $("body");
+	var start_button = $("#start_game");
+	var hit_button = $("#hit");
+	var stay_button = $("#stay");
+	var input = $("input");// only one on the page
+	var bets_button = $("#bets");
+	var bankroll_text = $("#bankroll_num_value");
+
 	console.log("loaded");
 	//set the background on load of the window
-	var body = $("body")
 	body.css("background-image","url(http://d2fhka9tf2vaj2.cloudfront.net/premium/034_blackJack/images/9.jpg)");
-};// end of window onload 
+
+
+	//need to write the function that will loop this game
+	var new_start_game = function(){
+		console.log("starting game");
+		$("#start_game").remove();//removes the button
+		var test = new Board;// not gonna bother renaming this since it wont really matter
+
+		while(test.bankroll !== 0){
+			test.deal_hands();
+			console.log(test);
+			
+
+
+
+
+
+
+			test.bankroll = Number(prompt("checking!! add a number"));
+		};//while loop
+		var start_button = $("<button>");
+		start_button.attr("id","start_game");
+		start_button.text("Start Game");
+		body.prepend(start_button);
+		alert("YOU LOST ALL YO MONEY!!!!");
+	};// end of the new start game function
+
+
+
+
+
+
+
+	//need to write the onclick here!
+	body.on("click", start_button ,new_start_game);//adds back the start game function once the game is over
 
 
 
@@ -195,4 +236,34 @@ window.onload = function(){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+});// end of window onload 
 
