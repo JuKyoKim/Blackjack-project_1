@@ -246,6 +246,8 @@ $(function() {
 	body.css("background-image","url(http://d2fhka9tf2vaj2.cloudfront.net/premium/034_blackJack/images/9.jpg)");
 	overall_container.toggle();
 	next_button.toggle();
+	var banktext = $("#bankroll");
+
 
 	var test = new Board;// not gonna bother renaming this since it wont really matter
 
@@ -256,6 +258,10 @@ $(function() {
 		console.log("starting game");
 		hit_button.toggle();
 		stay_button.toggle();
+		banktext.text("Current moola "+test.bankroll);
+		dealer_display.toggle();
+		player_display.toggle();
+
 	};// end of the new start game function
 
 	//need to write the onclick here!
@@ -274,11 +280,15 @@ $(function() {
 		stay_button.toggle();
 		test.deal_hands();
 		console.log(test);
+		banktext.text("Current moola "+test.bankroll);
+		dealer_display.toggle();
+		player_display.toggle();
 	});
 
 	hit_button.on("click",hit_button,function(){
 		test.hit_stay("hit");
 		console.log(test.player_hand);
+		banktext.text("Current moola "+test.bankroll);
 	});
 
 	stay_button.on("click",stay_button,function(){
@@ -287,9 +297,11 @@ $(function() {
 		next_button.toggle();
 		hit_button.toggle();
 		stay_button.toggle();
+		banktext.text("Current moola "+test.bankroll);
 	});
 
 	next_button.on("click",next_button,function(){
+		banktext.text("Current moola "+test.bankroll);
 		dealer_display.empty();
 		player_display.empty();
 		test.clear_hand();

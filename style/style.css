@@ -1,0 +1,15 @@
+body{
+	text-align:center;
+}
+
+#start_game{
+	margin-top: 40%;
+	width: 200px ;
+	height: 100px;
+}
+
+.white_background{
+	background-color: white;
+	width: 80px;
+	height: 100px;
+}
