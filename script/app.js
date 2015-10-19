@@ -260,7 +260,7 @@ $(function() {
 		banktext.text("Current moola "+test.bankroll);
 		dealer_display.toggle();
 		player_display.toggle();
-
+		$("#display").toggle();
 	};// end of the new start game function
 
 	//need to write the onclick here!
@@ -291,15 +291,18 @@ $(function() {
 	});
 
 	stay_button.on("click",stay_button,function(){
+		$("#display").toggle();
 		test.hit_stay("stay");
 		console.log(test);
 		next_button.toggle();
 		hit_button.toggle();
 		stay_button.toggle();
 		banktext.text("Current moola "+test.bankroll);
+		$("#display").text(test.find_winner());
 	});
 
 	next_button.on("click",next_button,function(){
+		$("#display").toggle();
 		banktext.text("Current moola "+test.bankroll);
 		dealer_display.empty();
 		player_display.empty();
@@ -312,10 +315,8 @@ $(function() {
 		dealer_card_count = 0;
 		player_card_count = 0;
 		if(test.bankroll <= 0){
-			test = new Board;
-			input.toggle();
-			bets_button.toggle();		
-			start_button.toggle();
+			window.reload();
+			//make it reload, but doubt thats gonna work
 		};
 	})
 
