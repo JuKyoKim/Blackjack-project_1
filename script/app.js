@@ -303,6 +303,8 @@ $(function() {
 		banktext.text("Current moola "+test.bankroll);
 		dealer_display.empty();
 		player_display.empty();
+		dealer_display.toggle();
+		player_display.toggle();
 		test.clear_hand();
 		input.toggle();
 		bets_button.toggle();

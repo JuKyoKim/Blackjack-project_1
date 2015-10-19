@@ -10,6 +10,7 @@ body{
 
 .white_background{
 	background-color: white;
+	margin-bottom: 20px;
 	width: 80px;
 	height: 100px;
 }
