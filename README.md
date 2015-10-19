@@ -4,9 +4,7 @@ This project was made to honor the fearless leader!
 ##General Wireframe
 ![](./wireframe_blackjack.png)
 
-##link to the game!
-###Currently there is a placeholder!
-[Link to the game](http://corgiorgy.com/)
+##[link to the game!](http://jukyokim.github.io./)
 
 ##Explanations on how to play the game
 - on click of the start game button initiates the game
@@ -27,5 +25,5 @@ This project was made to honor the fearless leader!
 
 ##Stuff I wish I could tackle!
 - CSS is definitely one of them
-- The game doesnt loop to well for round 2, but I think its because of the way i create this "new" board object
+- The game doesnt loop to well for round 2, but I think its because of the way i create this "new" board object, and manipulate it.
 - The code I wrote could definitely get refactored like crazy, but for now I am proud of at least figuring out some of the logic.
