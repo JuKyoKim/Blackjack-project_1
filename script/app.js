@@ -241,13 +241,12 @@ $(function() {
 	var dealer_display = $("#dealer_display_area");
 	var player_display = $("#player_display_area");
 	var next_button = $("#next_round");
+	var banktext = $("#bankroll");
 	console.log("loaded");
 	//set the background on load of the window
 	body.css("background-image","url(http://d2fhka9tf2vaj2.cloudfront.net/premium/034_blackJack/images/9.jpg)");
 	overall_container.toggle();
 	next_button.toggle();
-	var banktext = $("#bankroll");
-
 
 	var test = new Board;// not gonna bother renaming this since it wont really matter
 
@@ -317,11 +316,6 @@ $(function() {
 			start_button.toggle();
 		};
 	})
-
-
-	// $("#start_game").toggle();
-	// 	start_button.toggle();
-	//	overall_container.toggle();¬
 
 
 

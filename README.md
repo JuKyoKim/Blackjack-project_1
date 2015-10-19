@@ -4,6 +4,8 @@ This project was made to honor the fearless leader!
 ##General Wireframe
 ![](./wireframe_blackjack.png)
 
+##[user stories](https://trello.com/b/5LM6uuKH/blackjack-project-one)
+
 ##[link to the game!](http://jukyokim.github.io./)
 
 ##Explanations on how to play the game
